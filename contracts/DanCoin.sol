@@ -18,6 +18,8 @@ contract DanCoin is HumanStandardToken, Owned {
 
   // In the most extreme cases, Dan can burn anyone's tokens.
   function destroyTokens(address _target, uint256 amount) onlyOwner {
-
+    if (amount > balanceOf[_target]) throw;
+    balanceOf[_target] -= amount;
+    Transfer(_target, 0, amount);
   }
 }
