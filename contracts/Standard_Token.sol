@@ -1,3 +1,5 @@
+pragma solidity ^0.4.2;
+
 /*
 This has moved/changed to StandardToken.sol to conform to the Solidity naming standards.
 For a contract that ONLY implements the standard functions, see StandardToken.sol.

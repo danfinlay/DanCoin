@@ -1,12 +1,12 @@
-pragma solidity ^0.4.0;
+pragma solidity ^0.4.2;
 
 import "HumanStandardToken.sol";
 import "Owned.sol";
 
-
 contract DanCoin is HumanStandardToken, Owned {
   uint lastMinted;
   uint oneWeek = 604800;
+  address owner;
 
   function DanCoin(
     uint256 _initialAmount,
@@ -29,7 +29,7 @@ contract DanCoin is HumanStandardToken, Owned {
     if (mintedAmount > 160) throw;
     if (lastMinted + oneWeek > block.timestamp) throw;
 
-    balanceOf[owner] += mintedAmount;
+    balances[owner] += mintedAmount;
     totalSupply += mintedAmount;
     Transfer(0, owner, mintedAmount);
 
@@ -38,8 +38,8 @@ contract DanCoin is HumanStandardToken, Owned {
 
   // In the most extreme cases, Dan can burn anyone's tokens.
   function destroyTokens(address _target, uint256 amount) onlyOwner {
-    if (amount > balanceOf[_target]) throw;
-    balanceOf[_target] -= amount;
+    if (amount > balances[_target]) throw;
+    balances[_target] -= amount;
     Transfer(_target, 0, amount);
   }
 }

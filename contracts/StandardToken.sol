@@ -1,3 +1,5 @@
+pragma solidity ^0.4.2;
+
 /*
 You should inherit from StandardToken or, for a token like you would want to
 deploy in something like Mist, see HumanStandardToken.sol.
@@ -7,9 +9,9 @@ If you deploy this, you won't have anything useful.)
 Implements ERC 20 Token standard: https://github.com/ethereum/EIPs/issues/20
 .*/
 
-import "Token.sol";
-
-contract StandardToken is Token {
+contract StandardToken {
+    event Transfer(address indexed _from, address indexed _to, uint256 _value);
+    event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
     mapping (address => uint256) balances;
     mapping (address => mapping (address => uint256)) allowed;

@@ -1,4 +1,6 @@
-contract StandardProxy is Proxy {
+pragma solidity ^0.4.2;
+
+contract Proxy {
 
     function forward_transaction (address _destination, uint _value, bytes _bytecode) {
         if(msg.sender == implementer) {
